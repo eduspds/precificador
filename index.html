@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Precificador Profissional de Confeitaria</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <h1>🎂 Precificador Profissional de Confeitaria</h1>
+
+
+    <div class="section">
+
+        <h2>Minhas Receitas Salvas (Fichas Técnicas)</h2>
+
+
+        <p>
+            Carregue uma receita para editar seus custos ou crie uma nova usando os
+            campos abaixo.
+        </p>
+
+
+        <table id="tabela-receitas-salvas">
+            <thead>
+                <tr>
+                    <th>Nome da Receita</th>
+
+                    <th style="width: 280px">Ações</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="listaReceitasSalvas"></tbody>
+
+        </table>
+
+    </div>
+
+    <div class="section">
+        <div class="actions-container">
+            <button class="success" onclick="salvarReceita()">
+                💾 Salvar Receita Atual
+            </button>
+
+            <button class="secondary" onclick="limparTudo()">
+                ✨ Limpar Campos (Nova Receita)
+            </button>
+
+            <button onclick="gerarFichaTecnica()">
+                🖨️ Gerar Ficha para Impressão
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="section">
+        <h2>1. Cadastro de Estoque</h2>
+
+        <div class="grid-container">
+            <div class="grid-item">
+                <label for="nomeIngrediente">Nome do Ingrediente</label><input type="text" id="nomeIngrediente"
+                    placeholder="Ex: Leite Condensado" />
+            </div>
+
+            <div class="grid-item">
+                <label for="quantidadeCompra">Qtd. da Embalagem</label><input type="number" id="quantidadeCompra"
+                    placeholder="2" step="0.01" />
+            </div>
+
+            <div class="grid-item">
+                <label for="unidadeCompra">Unidade</label><select id="unidadeCompra">
+                    <option value="un">unidade(s)</option>
+
+                    <option value="dúzia">dúzia(s)</option>
+
+                    <option value="kg">kg</option>
+
+                    <option value="g">g</option>
+
+                    <option value="l">L</option>
+
+                    <option value="ml">ml</option>
+
+                </select>
+            </div>
+
+            <div class="grid-item">
+                <label for="precoUnitario">Preço Unitário (R$)</label><input type="number" id="precoUnitario"
+                    placeholder="7.39" step="0.01" />
+            </div>
+
+            <div class="grid-item">
+                <label for="precoTotal">Preço Total Pago (R$)</label><input type="number" id="precoTotal"
+                    placeholder="14.78" step="0.01" />
+            </div>
+
+            <div class="grid-item">
+                <button onclick="adicionarIngrediente()">Adicionar ao Estoque</button>
+            </div>
+
+        </div>
+
+        <table id="tabela-estoque">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+
+                    <th>Preço por Unidade Base</th>
+
+                    <th>Ações</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="listaIngredientes"></tbody>
+
+        </table>
+
+
+    </div>
+
+    <div class="section">
+        <h2>2. Montagem da Receita</h2>
+
+        <div class="grid-item" style="margin-bottom: 20px">
+            <label for="nomeReceita">Nome da Receita</label><input type="text" id="nomeReceita"
+                placeholder="Ex: Bolo de Cenoura com Brigadeiro" />
+        </div>
+
+        <h4>A. Ingredientes da Receita</h4>
+
+        <div class="grid-container">
+            <div class="grid-item">
+                <label for="ingredienteSelect">Ingrediente</label><select id="ingredienteSelect"></select>
+            </div>
+
+            <div class="grid-item">
+                <label for="quantidadeUsada">Qtd. Usada</label><input type="number" id="quantidadeUsada" step="0.01" />
+            </div>
+
+            <div class="grid-item">
+                <label for="unidadeUsada">Unidade</label><select id="unidadeUsada">
+                    <option value="g">g</option>
+
+                    <option value="kg">kg</option>
+
+                    <option value="ml">ml</option>
+
+                    <option value="l">L</option>
+
+                    <option value="un">unidade(s)</option>
+
+                    <option value="dúzia">dúzia(s)</option>
+
+                </select>
+            </div>
+
+            <div class="grid-item">
+                <button onclick="adicionarIngredienteReceita()">
+                    Adicionar Ingrediente
+                </button>
+            </div>
+
+        </div>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Ingrediente</th>
+
+
+                    <th>Qtd. Usada</th>
+
+
+                    <th>Custo</th>
+
+                    <th>Ações</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="listaReceita"></tbody>
+
+        </table>
+
+        <h4 style="margin-top: 30px">B. Outros Custos (Embalagem, Gás, etc)</h4>
+
+        <div class="grid-container">
+            <div class="grid-item">
+                <label for="nomeCusto">Nome do Custo</label><input type="text" id="nomeCusto"
+                    placeholder="Ex: Embalagem de Bolo" />
+            </div>
+
+            <div class="grid-item">
+                <label for="precoTotalCusto">Preço Total Pago</label><input type="number" id="precoTotalCusto"
+                    placeholder="50.00" step="0.01" />
+            </div>
+
+            <div class="grid-item">
+                <label for="qtdTotalCusto">Qtd. Total (un)</label><input type="number" id="qtdTotalCusto"
+                    placeholder="10" step="1" />
+            </div>
+
+            <div class="grid-item">
+                <label for="qtdUsadaCusto">Qtd. Usada na Receita</label><input type="number" id="qtdUsadaCusto"
+                    placeholder="1" step="1" />
+            </div>
+
+            <div class="grid-item">
+                <button onclick="adicionarOutroCusto()">Adicionar Custo</button>
+            </div>
+
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Custo Adicional</th>
+
+                    <th>Custo na Receita</th>
+
+                    <th>Ações</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="listaOutrosCustos"></tbody>
+
+        </table>
+
+        <h4 style="margin-top: 30px">C. Modo de Preparo</h4>
+
+        <div class="grid-item">
+            <textarea id="modoPreparo" placeholder="Digite o passo a passo da sua receita aqui..."></textarea>
+        </div>
+
+    </div>
+
+    <div class="section">
+        <h2>3. Precificação Final</h2>
+
+        <div class="grid-container">
+            <div class="grid-item">
+                <label for="maoDeObra">Mão de Obra (R$)</label><input type="number" id="maoDeObra" value="0" step="0.01"
+                    oninput="calcularPrecoFinal()" />
+            </div>
+
+            <div class="grid-item">
+                <label for="lucro">Margem de Lucro (%)</label><input type="number" id="lucro" value="100" step="1"
+                    oninput="calcularPrecoFinal()" />
+            </div>
+
+            <div class="grid-item">
+                <label for="rendimentoReceita">Rendimento da Receita (fatias/un)</label><input type="number"
+                    id="rendimentoReceita" value="1" step="1" oninput="calcularPrecoFinal()" />
+            </div>
+
+        </div>
+
+        <hr style="margin: 20px 0" />
+
+        <div class="grid-container" style="text-align: center">
+            <div class="grid-item">
+                <h4>Custo Total de Produção</h4>
+
+                <h3 class="sub-price" id="custoProducao">R$ 0.00</h3>
+
+            </div>
+
+
+            <div class="grid-item">
+                <h4>Preço Final de Venda</h4>
+
+                <h3 class="final-price" id="precoVenda">R$ 0.00</h3>
+
+            </div>
+
+            <div class="grid-item">
+                <h4>Valor por Fatia/Unidade</h4>
+
+                <h3 class="final-price" id="valorPorUnidade">R$ 0.00</h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="section">
+        <h2>4. Gerenciamento de Dados (Backup)</h2>
+
+        <p>
+            Use estes botões para salvar uma cópia de segurança de todos os seus
+            dados ou para carregar um backup salvo anteriormente.
+            <strong>Isto salva/carrega TUDO, incluindo seu estoque e suas receitas
+                salvas.</strong>
+        </p>
+
+        <div class="grid-container">
+            <div class="grid-item">
+                <button onclick="exportarDados()">Exportar Backup (Salvar)</button>
+            </div>
+
+            <div class="grid-item">
+                <button class="secondary" onclick="importarDados()">
+                    Importar Backup (Carregar)
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="javascript.js"></script>
+</body>
+
+</html>
