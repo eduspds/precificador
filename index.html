@@ -62,68 +62,58 @@
 
 
     <div class="section">
-        <h2>1. Cadastro de Estoque</h2>
-
+        <h2>1. Cadastrar Produtos Comprados (Estoque)</h2>
+        <p style="margin-top: -10px; font-size: 0.9em; color: #555;"><i>Informe aqui o item como você o comprou no
+                mercado (ex: caixa de 1L de leite, pacote de 1kg de farinha).</i></p>
         <div class="grid-container">
-            <div class="grid-item">
-                <label for="nomeIngrediente">Nome do Ingrediente</label><input type="text" id="nomeIngrediente"
-                    placeholder="Ex: Leite Condensado" />
-            </div>
-
-            <div class="grid-item">
-                <label for="quantidadeCompra">Qtd. da Embalagem</label><input type="number" id="quantidadeCompra"
-                    placeholder="2" step="0.01" />
-            </div>
-
-            <div class="grid-item">
-                <label for="unidadeCompra">Unidade</label><select id="unidadeCompra">
-                    <option value="un">unidade(s)</option>
-
-                    <option value="dúzia">dúzia(s)</option>
-
-                    <option value="kg">kg</option>
-
-                    <option value="g">g</option>
-
+            <div class="grid-item"><label for="nomeIngrediente">Nome do Produto</label><input type="text"
+                    id="nomeIngrediente" placeholder="Ex: Leite Integral"></div>
+            <div class="grid-item"><label for="quantidadeCompra">Tamanho da Embalagem</label><input type="number"
+                    id="quantidadeCompra" placeholder="1" step="0.01"></div>
+            <div class="grid-item"><label for="unidadeCompra">Unidade da Embalagem</label><select id="unidadeCompra">
                     <option value="l">L</option>
-
+                    <option value="kg">kg</option>
+                    <option value="un">unidade(s)</option>
+                    <option value="dúzia">dúzia(s)</option>
+                    <option value="g">g</option>
                     <option value="ml">ml</option>
-
-                </select>
-            </div>
-
-            <div class="grid-item">
-                <label for="precoUnitario">Preço Unitário (R$)</label><input type="number" id="precoUnitario"
-                    placeholder="7.39" step="0.01" />
-            </div>
-
-            <div class="grid-item">
-                <label for="precoTotal">Preço Total Pago (R$)</label><input type="number" id="precoTotal"
-                    placeholder="14.78" step="0.01" />
-            </div>
-
-            <div class="grid-item">
-                <button onclick="adicionarIngrediente()">Adicionar ao Estoque</button>
-            </div>
-
+                </select></div>
+            <div class="grid-item"><label for="precoUnitario">Preço por Unidade (opcional)</label><input type="number"
+                    id="precoUnitario" placeholder="5.60" step="0.01"></div>
+            <div class="grid-item"><label for="precoTotal">Preço Total Pago na Embalagem</label><input type="number"
+                    id="precoTotal" placeholder="5.60" step="0.01"></div>
+            <div class="grid-item"><button onclick="adicionarIngrediente()">Adicionar ao Estoque</button></div>
         </div>
-
         <table id="tabela-estoque">
             <thead>
                 <tr>
                     <th>Nome</th>
-
                     <th>Preço por Unidade Base</th>
-
                     <th>Ações</th>
-
                 </tr>
-
             </thead>
-
             <tbody id="listaIngredientes"></tbody>
-
         </table>
+    </div>
+
+    </div>
+
+    <table id="tabela-estoque">
+        <thead>
+            <tr>
+                <th>Nome</th>
+
+                <th>Preço por Unidade Base</th>
+
+                <th>Ações</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="listaIngredientes"></tbody>
+
+    </table>
 
 
     </div>
